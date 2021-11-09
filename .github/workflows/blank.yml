@@ -1,0 +1,68 @@
+#=================================================
+# Description: Build using GitHub Actions
+#=====================
+#=================================================
+# Description: Build using GitHub Actions
+#=================================================
+
+name: Build Lancelot kernel
+
+on: 
+  push:
+    branches:
+      - main
+  release:
+    types: [published]
+
+jobs:
+
+  build:
+    runs-on: ubuntu-20.04
+
+
+
+
+
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@main
+    
+    - name: Build
+      run: |
+        sudo apt-get update
+        sudo apt-get install android-tools-mkbootimg bc bison build-essential ca-certificates cpio curl flex git kmod libssl-dev libtinfo5 python2 python python3 gcc g++ sudo unzip wget xz-utils -y --no-install-recommends
+        chmod +x build.sh && ./build.sh
+
+    - name: bootimg
+      uses: actions/upload-artifact@master
+      with:
+        name: bootimg
+        path: out/*
+
+    - name: deploy
+      run: |
+        sudo apt update
+        sudo apt install -y img2simg jq sudo wget xz-utils
+        ./build/fetch-and-prepare-latest-ota.sh "16.04/arm64/android9/devel" "tissot" ota
+        mkdir -p out
+        ./build/system-image-from-ota.sh ota/ubuntu_command out
+    - name: devel
+      uses: actions/upload-artifact@master
+      with:
+       name: develflash
+       path: 
+       out/boot.img
+       out/system.img
+
+    - name: Upload boot image 
+      uses: actions/upload-artifact@master
+      with:
+        name: kernel image
+        path: /home/runner/work/tissot-ut/tissot-ut/android_kernel_xiaomi_msm8953/out/arch/arm64/boot/Image.gz-dtb
+    
+    - name: Upload conf 
+      uses: actions/upload-artifact@master
+      with:
+        name: kernel Config
+        path: /home/runner/work/tissot-ut/tissot-ut/android_kernel_xiaomi_msm8953/out/.config
