@@ -10,7 +10,7 @@ SCRIPT="$(dirname "$(realpath "$0")")"/build
 
 mkdir "${TMP}/system"
 mkdir "${TMP}/partitions"
-
+chmod +x "$SCRIPT/*"
 source "${HERE}/deviceinfo"
 
 case $deviceinfo_arch in
