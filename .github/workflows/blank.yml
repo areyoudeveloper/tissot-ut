@@ -51,9 +51,8 @@ jobs:
       uses: actions/upload-artifact@master
       with:
        name: develflash
-       path: 
-       out/boot.img
-       out/system.img
+       path: out/boot.img 
+       path: out/system.img
 
     - name: Upload boot image 
       uses: actions/upload-artifact@master
