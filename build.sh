@@ -10,7 +10,7 @@ SCRIPT="$(dirname "$(realpath "$0")")"/build
 
 mkdir "${TMP}/system"
 mkdir "${TMP}/partitions"
-chmod +x "$SCRIPT/*"
+chmod +x "$SCRIPT/build-kernel.sh"
 source "${HERE}/deviceinfo"
 
 case $deviceinfo_arch in
@@ -55,9 +55,9 @@ else
     PATH="$GCC_PATH/bin:$GCC_ARM32_PATH/bin:${PATH}" \
     "$SCRIPT/build-kernel.sh" "${TMPDOWN}" "${TMP}/system"
 fi
-
+chmod +x "$SCRIPT/make-bootimage.sh
 "$SCRIPT/make-bootimage.sh" "${TMPDOWN}/KERNEL_OBJ" "${TMPDOWN}/halium-boot-ramdisk.img" "${TMP}/partitions/boot.img"
-
+chmod +x "$SCRIPT/build-tarball-mainline.sh" 
 cp -av overlay/* "${TMP}/"
 "$SCRIPT/build-tarball-mainline.sh" tissot "${OUT}" "${TMP}"
 
