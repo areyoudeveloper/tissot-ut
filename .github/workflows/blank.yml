@@ -44,6 +44,7 @@ jobs:
       run: |
         sudo apt update
         sudo apt install -y img2simg jq sudo wget xz-utils
+        chmod +x build/*
         ./build/fetch-and-prepare-latest-ota.sh "16.04/arm64/android9/devel" "tissot" ota
         mkdir -p out
         ./build/system-image-from-ota.sh ota/ubuntu_command out
