@@ -7,7 +7,7 @@ HERE=$(pwd)
 source "${HERE}/deviceinfo"
 
 KERNEL_DIR="${TMPDOWN}/$(basename "${deviceinfo_kernel_source}")"
-KERNEL_DIR="${KERNEL_DIR%.*}"
+#KERNEL_DIR="${KERNEL_DIR%.*}"
 OUT="${TMPDOWN}/KERNEL_OBJ"
 
 mkdir -p "$OUT"
@@ -25,7 +25,7 @@ export CROSS_COMPILE_ARM32=$TMPDOWN/arm-linux-androideabi-4.9/bin/arm-linux-andr
 PATH=$$TMPDOWN/linux-x86/bin/:$TMPDOWN/aarch64-linux-android-4.9/bin/:$PATH
 export PATH
 
-sudo cd "$KERNEL_DIR"
+cd "$KERNEL_DIR"
 make O="$OUT" $deviceinfo_kernel_defconfig
 make O="$OUT" CC=$CC -j$(nproc --all)
 make O="$OUT" CC=$CC INSTALL_MOD_STRIP=1 INSTALL_MOD_PATH="$INSTALL_MOD_PATH" modules_install
