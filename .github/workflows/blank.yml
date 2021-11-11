@@ -48,7 +48,6 @@ jobs:
         ./build/fetch-and-prepare-latest-ota.sh "16.04/arm64/android9/devel" "tissot" ota
         mkdir -p out
         ./build/system-image-from-ota.sh ota/ubuntu_command out
-    - name: devel
       uses: actions/upload-artifact@master
       with:
        name: develflash
