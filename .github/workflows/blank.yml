@@ -52,7 +52,7 @@ jobs:
       uses: actions/upload-artifact@master
       with:
        name: develflash
-       path: out/boot.img | out/system.img
+       path: out/system.img
 
     - name: Upload boot image 
       uses: actions/upload-artifact@master
@@ -64,4 +64,4 @@ jobs:
       uses: actions/upload-artifact@master
       with:
         name: kernel Config
-        path: /home/runner/work/tissot-ut/tissot-ut/android_kernel_xiaomi_msm8953/out/.config
+        path: out/.config
