@@ -56,7 +56,13 @@ jobs:
       with:
         name: kernel image
         path: /home/runner/work/tissot-ut/tissot-ut/android_kernel_xiaomi_msm8953/out/arch/arm64/boot/Image.gz-dtb
-    
+
+    - name: upload devimg
+      uses: actions/upload-artifact@master
+      with:
+        name: IMG
+        path: /home/runner/work/tissot-ut/tissot-ut/*.IMG
+
     - name: Upload conf 
       uses: actions/upload-artifact@master
       with:
