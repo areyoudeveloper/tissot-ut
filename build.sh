@@ -21,14 +21,14 @@ esac
 
 TMPDOWN=$(mktemp -d)
 cd "$TMPDOWN"
-    git clone https://android.googlesource.com/platform/prebuilts/gcc/linux-x86/aarch64/aarch64-linux-android-4.9 -b pie-gsi --depth 1
+    git clone https://github.com/KudProject/aarch64-linux-android-4.9 --depth 1
     GCC_PATH="$TMPDOWN/aarch64-linux-android-4.9"
     if [ -n "$deviceinfo_kernel_clang_compile" ] && $deviceinfo_kernel_clang_compile; then
-        git clone https://github.com/kdrag0n/proton-clang 
+        git clone https://github.com/kdrag0n/proton-clang --depth 1
         CLANG_PATH="$TMPDOWN/proton-clang"
 
     fi
-    git clone https://android.googlesource.com/platform/prebuilts/gcc/linux-x86/arm/arm-linux-androideabi-4.9 -b pie-gsi --depth 1
+    git clone https://github.com/KudProject/arm-linux-androideabi-4.9 --depth 1
     GCC_ARM32_PATH="$TMPDOWN/arm-linux-androideabi-4.9"
     
     git clone "$deviceinfo_kernel_source" -b $deviceinfo_kernel_source_branch --depth 1
