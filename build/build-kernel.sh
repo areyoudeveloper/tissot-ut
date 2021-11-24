@@ -26,9 +26,47 @@ PATH=$$TMPDOWN/linux-x86/bin/:$TMPDOWN/aarch64-linux-android-4.9/bin/:$PATH
 export PATH
 
 cd "$KERNEL_DIR"
-make O="$OUT" $deviceinfo_kernel_defconfig
-make O="$OUT" CC=$CC -j$(nproc --all)
-make O="$OUT" CC=$CC INSTALL_MOD_STRIP=1 INSTALL_MOD_PATH="$INSTALL_MOD_PATH" modules_install
+make O="$OUT" CC=$CC \
+        CXX="clang++" \
+	AR="llvm-ar" \
+	NM="llvm-nm" \
+	STRIP="llvm-strip" \
+	OBJCOPY="llvm-objcopy" \
+	OBJDUMP="llvm-objdump"\
+	OBJSIZE="llvm-size" \
+	READELF="llvm-readelf" \
+	HOSTCC="clang" \
+	HOSTCXX="clang++" \
+	HOSTAR="llvm-ar" \
+	HOSTNM="llvm-nm" $deviceinfo_kernel_defconfig
+make O="$OUT" CC="clang" \
+	CXX="clang++" \
+	AR="llvm-ar" \
+	NM="llvm-nm" \
+	STRIP="llvm-strip" \
+	OBJCOPY="llvm-objcopy" \
+	OBJDUMP="llvm-objdump"\
+	OBJSIZE="llvm-size" \
+	READELF="llvm-readelf" \
+	HOSTCC="clang" \
+	HOSTCXX="clang++" \
+	HOSTAR="llvm-ar" \
+	HOSTNM="llvm-nm" \
+        -j$(nproc --all)
+make O="$OUT" CC=$CC \
+        CXX="clang++" \
+	AR="llvm-ar" \
+	NM="llvm-nm" \
+	STRIP="llvm-strip" \
+	OBJCOPY="llvm-objcopy" \
+	OBJDUMP="llvm-objdump"\
+	OBJSIZE="llvm-size" \
+	READELF="llvm-readelf" \
+	HOSTCC="clang" \
+	HOSTCXX="clang++" \
+	HOSTAR="llvm-ar" \
+	HOSTNM="llvm-nm" \
+        INSTALL_MOD_STRIP=1 INSTALL_MOD_PATH="$INSTALL_MOD_PATH" modules_install
 ls "$OUT/arch/$ARCH/boot/"*Image*
 
 if [ -n "$deviceinfo_kernel_apply_overlay" ] && $deviceinfo_kernel_apply_overlay; then
