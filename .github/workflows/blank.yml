@@ -61,7 +61,7 @@ jobs:
       uses: actions/upload-artifact@master
       with:
         name: IMG
-        path: /home/runner/work/tissot-ut/tissot-ut/*.IMG
+        path: /home/runner/work/tissot-ut/tissot-ut/*.img
 
     - name: Upload conf 
       uses: actions/upload-artifact@master
