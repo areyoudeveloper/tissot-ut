@@ -35,10 +35,10 @@ make O="$OUT" CC=$CC \
 	OBJDUMP="llvm-objdump"\
 	OBJSIZE="llvm-size" \
 	READELF="llvm-readelf" \
-	HOSTCC="clang" \
-	HOSTCXX="clang++" \
-	HOSTAR="llvm-ar" \
-	HOSTNM="llvm-nm" $deviceinfo_kernel_defconfig
+	HOSTCC="gcc" \
+	HOSTCXX="g++" \
+	HOSTAR="ar" \
+	HOSTNM="nm" $deviceinfo_kernel_defconfig
 make O="$OUT" CC="clang" \
 	CXX="clang++" \
 	AR="llvm-ar" \
@@ -48,10 +48,10 @@ make O="$OUT" CC="clang" \
 	OBJDUMP="llvm-objdump"\
 	OBJSIZE="llvm-size" \
 	READELF="llvm-readelf" \
-	HOSTCC="clang" \
-	HOSTCXX="clang++" \
-	HOSTAR="llvm-ar" \
-	HOSTNM="llvm-nm" \
+	HOSTCC="gcc" \
+	HOSTCXX="g++" \
+	HOSTAR="ar" \
+	HOSTNM="nm" \
         -j$(nproc --all)
 make O="$OUT" CC=$CC \
         CXX="clang++" \
@@ -62,10 +62,10 @@ make O="$OUT" CC=$CC \
 	OBJDUMP="llvm-objdump"\
 	OBJSIZE="llvm-size" \
 	READELF="llvm-readelf" \
-	HOSTCC="clang" \
-	HOSTCXX="clang++" \
-	HOSTAR="llvm-ar" \
-	HOSTNM="llvm-nm" \
+	HOSTCC="gcc" \
+	HOSTCXX="g++" \
+	HOSTAR="ar" \
+	HOSTNM="nm" \
         INSTALL_MOD_STRIP=1 INSTALL_MOD_PATH="$INSTALL_MOD_PATH" modules_install
 ls "$OUT/arch/$ARCH/boot/"*Image*
 
