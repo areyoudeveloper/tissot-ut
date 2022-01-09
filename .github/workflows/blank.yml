@@ -34,8 +34,6 @@ jobs:
         sudo apt-get install android-tools-mkbootimg bc bison build-essential ca-certificates cpio curl flex git kmod libssl-dev libtinfo5 python2 python python3 gcc g++ sudo unzip wget xz-utils -y --no-install-recommends
         git clone https://gitlab.com/ubports/community-ports/halium-generic-adaptation-build-tools -b halium-11 build
         ./build/build.sh
-        chmod +x build.sh && ./build.sh
-       
 
     - name: bootimg
       uses: actions/upload-artifact@master
