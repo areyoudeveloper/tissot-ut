@@ -10,7 +10,7 @@ name: Build Lancelot kernel
 on: 
   push:
     branches:
-      - main
+      - Sweetie
   release:
     types: [published]
 
